@@ -1,6 +1,7 @@
 {
   "name": "factory-engine-web",
   "private": true,
+  "homepage": "https://ash-32.github.io/Factory-Engine--Website/",
   "sideEffects": false,
   "type": "module",
   "scripts": {

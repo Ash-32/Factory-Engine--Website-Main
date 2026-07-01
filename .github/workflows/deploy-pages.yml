@@ -32,8 +32,10 @@ jobs:
       - name: Build static site
         run: npm run build:pages
 
-      - name: Add 404.html for client routing
-        run: cp dist/client/index.html dist/client/404.html
+      - name: Prepare Pages artifact
+        run: |
+          cp dist/client/index.html dist/client/404.html
+          touch dist/client/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

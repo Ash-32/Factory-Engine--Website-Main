@@ -1,19 +1,28 @@
-# Factory Engine
+# Factory Engine — Website
 
-Marketing website for [Factory Engine](https://factory-engine.com) — built with TanStack Start and deployed to GitHub Pages for preview.
+Marketing site for **Factory Engine**. GitHub repo: **[Ash-32/Factory-Engine--Website](https://github.com/Ash-32/Factory-Engine--Website)**
 
-## Quick start
+## Live preview
 
-```bash
+**https://ash-32.github.io/Factory-Engine--Website/**
+
+Use this link on GitHub. Do not click `localhost` links unless you are running the dev server from **this folder** (see below).
+
+## Local development
+
+This is a **Node.js website**. It does **not** live in `ntfs-catalog` (that folder is the EngineVault desktop app and has no `package.json`).
+
+```powershell
+cd C:\Users\ASHISH\Projects\factory-engine-web
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Then open the URL shown in the terminal (usually **http://localhost:3000**).
 
 ## Deploy
 
-See [DEPLOY.md](./DEPLOY.md) for GitHub Pages setup and preview URL.
+Pushes to `main` deploy automatically via GitHub Actions. See [DEPLOY.md](./DEPLOY.md).
 
 | Command | Purpose |
 |---------|---------|

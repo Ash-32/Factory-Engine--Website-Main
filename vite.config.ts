@@ -24,5 +24,9 @@ export default defineConfig({
   nitro: false,
   vite: {
     base: pagesBase,
+    server: {
+      port: 3000,
+      strictPort: false,
+    },
   },
 });

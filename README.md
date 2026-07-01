@@ -2,6 +2,15 @@
 
 Marketing site for **Factory Engine**. GitHub repo: **[Ash-32/Factory-Engine--Website](https://github.com/Ash-32/Factory-Engine--Website)**
 
+> **This is NOT CodeForge.** CodeForge is a separate AI coding landing page at [codeforge-web](../codeforge-web) → [Ash-32/CodeForge-Website](https://github.com/Ash-32/CodeForge-Website).  
+> **This is NOT EngineVault.** The desktop app lives in `ntfs-catalog` → [Ash-32/EngineVault](https://github.com/Ash-32/EngineVault).
+
+## Local folder
+
+```
+C:\Users\ASHISH\Projects\factory-engine-web
+```
+
 ## Live preview
 
 **https://ash-32.github.io/Factory-Engine--Website/**

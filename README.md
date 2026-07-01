@@ -29,6 +29,20 @@ npm run dev
 
 Then open the URL shown in the terminal (usually **http://localhost:3000**).
 
+## Beta signup (Google Forms)
+
+The two-step beta form submits to Google Forms — no backend. To connect your form, see **[GOOGLE-FORM-SETUP.md](./GOOGLE-FORM-SETUP.md)**.
+
+Quick start:
+
+```powershell
+copy .env.example .env
+# Edit .env with your formResponse URL and entry.* IDs, then:
+npm run dev
+```
+
+Or paste IDs into `src/config/google-form.defaults.ts` and commit (safe — entry IDs are public).
+
 ## Deploy
 
 Pushes to `main` deploy automatically via GitHub Actions. See [DEPLOY.md](./DEPLOY.md).

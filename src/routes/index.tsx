@@ -1,5 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
+import { AccessForm } from "@/components/AccessForm";
 import { NeuralExplorer } from "@/components/NeuralExplorer";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
@@ -411,60 +412,6 @@ function FinalCta() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Form                                                                */
-/* ------------------------------------------------------------------ */
-
-function AccessForm({ compact = false }: { compact?: boolean }) {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    if (!email) return;
-    setSubmitted(true);
-  }
-
-  if (submitted) {
-    return (
-      <div className="border-b border-ink pb-3">
-        <p className="font-display text-[1.15rem] tracking-[-0.012em] text-ink">
-          You&apos;re on the beta list.
-        </p>
-        <p className="mt-1 text-sm text-ink-muted">
-          We&apos;ll send install instructions to your inbox shortly.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form
-      onSubmit={onSubmit}
-      className={`flex w-full items-end gap-4 border-b border-ink pb-2 ${compact ? "max-w-md" : ""}`}
-    >
-      <label className="flex-1">
-        <span className="sr-only">Work email</span>
-        <input
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="your.name@company.com"
-          className="w-full bg-transparent font-display text-[1.1rem] tracking-[-0.012em] text-ink placeholder:text-ink-muted/70 focus:outline-none"
-        />
-      </label>
-      <button
-        type="submit"
-        className="inline-flex items-baseline gap-2 font-display text-sm font-medium tracking-tight text-ink transition-colors hover:text-brass"
-      >
-        Join beta
-        <span aria-hidden>→</span>
-      </button>
-    </form>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /*  Footer                                                              */
 /* ------------------------------------------------------------------ */
 
@@ -558,6 +505,7 @@ function _Footer() {
           <ul className="mt-4 space-y-2 text-sm text-ink-soft">
             <li><a className="hover:text-ink" href="#access">Join beta</a></li>
             <li><a className="hover:text-ink" href="mailto:hello@factory-engine.com">hello@factory-engine.com</a></li>
+            <li><Link className="hover:text-ink" to="/privacy">Privacy Policy</Link></li>
           </ul>
         </div>
       </div>

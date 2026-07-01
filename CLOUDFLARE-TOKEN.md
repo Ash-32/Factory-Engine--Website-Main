@@ -10,7 +10,7 @@ Your deploy failed because the token can **log in** but cannot **write Workers**
 4. Under **Account Resources**, choose **Include** → your Cloudflare account
 5. Under **Zone Resources** (if shown), choose **Include** → **Specific zone** → `factory-engine.com`
 6. Click **Continue to summary** → **Create Token**
-7. Copy the token into `web/.env`:
+7. Copy the token into `.env`:
    ```
    CLOUDFLARE_API_TOKEN=paste-here
    CLOUDFLARE_ACCOUNT_ID=your-account-id
@@ -19,7 +19,6 @@ Your deploy failed because the token can **log in** but cannot **write Workers**
 ## Verify before deploy
 
 ```powershell
-cd web
 npx wrangler whoami
 ```
 
@@ -36,7 +35,6 @@ npm run deploy:domain
 In your own terminal (not Cursor):
 
 ```powershell
-cd web
 npx wrangler login
 npm run deploy:domain
 ```
@@ -46,4 +44,4 @@ Browser login grants full Workers access automatically.
 ## After success
 
 - Visit https://factory-engine.com
-- **Revoke** any tokens you pasted in chat and create a fresh one kept only in `web/.env`
+- **Revoke** any tokens you pasted in chat and create a fresh one kept only in `.env`

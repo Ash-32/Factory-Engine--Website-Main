@@ -44,7 +44,6 @@ Cloudflare dashboard → any site → **Overview** → copy **Account ID** (righ
 In a terminal:
 
 ```bash
-cd web
 npx wrangler login
 npm run deploy:domain
 ```
@@ -77,6 +76,6 @@ Visit **https://factory-engine.com**
 
 ## Troubleshooting
 
-- **“Not authenticated”** → run `npx wrangler login` in the `web` folder
+- **“Not authenticated”** → run `npx wrangler login` from the repo root
 - **Custom domain fails** → ensure `factory-engine.com` is **Active** in Cloudflare before `deploy:domain`
-- **Logo missing** → logo lives in `web/public/factory-engine-logo.png` and is copied during deploy prep
+- **Logo missing** → logo lives in `public/factory-engine-logo.png` and is copied during deploy prep

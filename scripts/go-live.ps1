@@ -1,5 +1,5 @@
 # Go live on factory-engine.com
-# Run from the web folder:  .\scripts\go-live.ps1
+# Run from repo root:  .\scripts\go-live.ps1
 
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot\..
@@ -7,7 +7,7 @@ Set-Location $PSScriptRoot\..
 Write-Host "`n=== Factory Engine — Cloudflare deploy ===" -ForegroundColor Cyan
 
 if (-not (Test-Path ".env")) {
-  Write-Host "Create web/.env from .env.example with CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID" -ForegroundColor Yellow
+  Write-Host "Create .env from .env.example with CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID" -ForegroundColor Yellow
   Write-Host "Token: https://dash.cloudflare.com/profile/api-tokens (Edit Cloudflare Workers template)`n"
   exit 1
 }

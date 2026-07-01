@@ -6,10 +6,23 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+const pagesBase =
+  process.env.GITHUB_PAGES === "true" ? "/Factory-Engine--Website/" : "/";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+    router: { basepath: pagesBase === "/" ? undefined : pagesBase.replace(/\/$/, "") },
+    prerender: {
+      enabled: true,
+      crawlLinks: true,
+      failOnError: true,
+    },
+  },
+  // Static GitHub Pages — no Cloudflare Workers deploy target.
+  nitro: false,
+  vite: {
+    base: pagesBase,
   },
 });

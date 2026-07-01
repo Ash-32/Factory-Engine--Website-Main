@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "icon",
         type: "image/png",
-        href: "/factory-engine-logo.png",
+        href: `${import.meta.env.BASE_URL}factory-engine-logo.png`,
       },
     ],
   }),

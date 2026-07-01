@@ -5,7 +5,7 @@ import { NeuralExplorer } from "@/components/NeuralExplorer";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 const SITE_TITLE = "Factory Engine — Your engineering knowledge, recovered.";
-const LOGO_SRC = "/factory-engine-logo.png";
+const LOGO_SRC = `${import.meta.env.BASE_URL}factory-engine-logo.png`;
 const SITE_DESC =
   "Ask one question. Surface every drawing, supplier record, FMEA, cost analysis, and field complaint connected to it. A quiet knowledge platform for manufacturers.";
 

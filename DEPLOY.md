@@ -35,17 +35,8 @@ No secrets or environment variables are required.
 
 ## Cloudflare Pages / Workers (static)
 
-The site builds to static HTML in `dist/client` (`nitro: false`). Use **static assets** deploy — do not let Wrangler auto-configure TanStack Start SSR (it will fail on the Lovable Vite config).
+See **[DEPLOY-CLOUDFLARE.md](./DEPLOY-CLOUDFLARE.md)** for full setup.
 
-| Setting | Value |
-|---------|--------|
-| **Build command** | `npm run build` |
-| **Deploy command** | `npm run deploy:cf` |
-| **Build output directory** | `dist/client` (for reference; wrangler reads `wrangler.jsonc`) |
-| **Node.js version** | 22 |
+**Recommended:** Cloudflare **Pages** (Git → build `npm run build` → output `dist/client`, no deploy command).
 
-`wrangler.jsonc` in the repo points at `./dist/client` with SPA fallback. Requires `CLOUDFLARE_API_TOKEN` in Cloudflare project settings.
-
-Use **npm** (not Bun). Do not add `bun.lock`.
-
-For a custom domain (e.g. factory-engine.com), leave `GITHUB_PAGES` unset so assets use base path `/`. Only set `GITHUB_PAGES=true` for GitHub Pages builds.
+**Workers Builds:** deploy command must be `npm run deploy:cf` + `CLOUDFLARE_API_TOKEN` secret. Never use `npx wrangler deploy` alone.

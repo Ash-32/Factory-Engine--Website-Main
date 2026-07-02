@@ -33,14 +33,19 @@ If Pages is not already enabled:
 
 No secrets or environment variables are required.
 
-## Cloudflare Pages
+## Cloudflare Pages / Workers (static)
 
-Use **npm** (not Bun). The repo ships `package-lock.json` only — do not add `bun.lock` or Cloudflare will run `bun install --frozen-lockfile` and fail if it drifts from `package.json`.
+The site builds to static HTML in `dist/client` (`nitro: false`). Use **static assets** deploy — do not let Wrangler auto-configure TanStack Start SSR (it will fail on the Lovable Vite config).
 
 | Setting | Value |
 |---------|--------|
 | **Build command** | `npm run build` |
-| **Build output directory** | `dist/client` |
+| **Deploy command** | `npx wrangler deploy` |
+| **Build output directory** | `dist/client` (for reference; wrangler reads `wrangler.jsonc`) |
 | **Node.js version** | 22 |
+
+`wrangler.jsonc` in the repo points at `./dist/client` with SPA fallback. Requires `CLOUDFLARE_API_TOKEN` in Cloudflare project settings.
+
+Use **npm** (not Bun). Do not add `bun.lock`.
 
 For a custom domain (e.g. factory-engine.com), leave `GITHUB_PAGES` unset so assets use base path `/`. Only set `GITHUB_PAGES=true` for GitHub Pages builds.

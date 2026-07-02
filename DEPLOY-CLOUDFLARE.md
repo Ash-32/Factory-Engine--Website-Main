@@ -31,14 +31,32 @@ Do **not** use Bun. Do not add `bun.lock`.
 
 Bypasses Cloudflare’s Workers Builds UI. Deploy runs from GitHub when you push to `main`.
 
-1. Create API token: [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens) → **Edit Cloudflare Workers** template
-2. GitHub repo **Settings → Secrets and variables → Actions** → add:
-   - `CLOUDFLARE_API_TOKEN` — your token
-   - `CLOUDFLARE_ACCOUNT_ID` — from Cloudflare dashboard URL or **Workers & Pages → Overview** (32-char hex)
-3. Push to `main` — workflow **Deploy Cloudflare** runs automatically (`.github/workflows/deploy-cloudflare.yml`)
-4. Optional: disable Cloudflare’s native Git build to avoid double deploys
+### 1. Create Cloudflare API token
 
-Token must include **Account → Workers Scripts → Edit**. If deploy fails with `Authentication error [10000]`, recreate the token with that permission.
+[Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens) → **Create Token** → **Edit Cloudflare Workers** template → Create.
+
+Required permission: **Account → Workers Scripts → Edit**.
+
+### 2. Get your Account ID
+
+Cloudflare dashboard → **Workers & Pages** → right sidebar **Account ID** (32 characters).
+
+### 3. Add GitHub secrets (required — deploy fails without these)
+
+Repo **Settings → Secrets and variables → Actions → New repository secret**:
+
+| Secret name | Value |
+|-------------|--------|
+| `CLOUDFLARE_API_TOKEN` | Token from step 1 |
+| `CLOUDFLARE_ACCOUNT_ID` | Account ID from step 2 |
+
+### 4. Run deploy
+
+Push to `main` or **Actions → Deploy Cloudflare → Run workflow**.
+
+If secrets are missing, the workflow fails early with a clear error (not just exit code 1).
+
+The Node.js 20 deprecation notice for older action versions is a warning only — the workflow uses `checkout@v5` and `setup-node@v5`.
 
 ---
 

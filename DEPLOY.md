@@ -40,7 +40,7 @@ The site builds to static HTML in `dist/client` (`nitro: false`). Use **static a
 | Setting | Value |
 |---------|--------|
 | **Build command** | `npm run build` |
-| **Deploy command** | `npx wrangler deploy` |
+| **Deploy command** | `npm run deploy:cf` |
 | **Build output directory** | `dist/client` (for reference; wrangler reads `wrangler.jsonc`) |
 | **Node.js version** | 22 |
 

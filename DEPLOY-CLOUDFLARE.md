@@ -27,6 +27,21 @@ Do **not** use Bun. Do not add `bun.lock`.
 
 ---
 
+## Option C — GitHub Actions deploy (most reliable)
+
+Bypasses Cloudflare’s Workers Builds UI. Deploy runs from GitHub when you push to `main`.
+
+1. Create API token: [Cloudflare API Tokens](https://dash.cloudflare.com/profile/api-tokens) → **Edit Cloudflare Workers** template
+2. GitHub repo **Settings → Secrets and variables → Actions** → add:
+   - `CLOUDFLARE_API_TOKEN` — your token
+   - `CLOUDFLARE_ACCOUNT_ID` — from Cloudflare dashboard URL or **Workers & Pages → Overview** (32-char hex)
+3. Push to `main` — workflow **Deploy Cloudflare** runs automatically (`.github/workflows/deploy-cloudflare.yml`)
+4. Optional: disable Cloudflare’s native Git build to avoid double deploys
+
+Token must include **Account → Workers Scripts → Edit**. If deploy fails with `Authentication error [10000]`, recreate the token with that permission.
+
+---
+
 ## Option B — Workers Builds (Wrangler static assets)
 
 Use only if you already have a **Workers** CI project (separate build + deploy steps).

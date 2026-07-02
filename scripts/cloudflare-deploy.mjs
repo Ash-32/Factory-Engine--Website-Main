@@ -19,9 +19,13 @@ console.log("[cf-deploy] wrangler.jsonc:", existsSync(wranglerJsonc));
 console.log("[cf-deploy] dist/client/index.html:", existsSync(indexHtml));
 console.log("[cf-deploy] wrangler bin:", existsSync(wranglerBin));
 console.log(
-  "[cf-deploy] CLOUDFLARE_API_TOKEN:",
-  process.env.CLOUDFLARE_API_TOKEN ? "set" : "MISSING",
+  "[cf-deploy] CLOUDFLARE_ACCOUNT_ID:",
+  process.env.CLOUDFLARE_ACCOUNT_ID ? "set" : "MISSING",
 );
+
+const token =
+  process.env.CLOUDFLARE_API_TOKEN ?? process.env.WRANGLER_API_TOKEN ?? "";
+console.log("[cf-deploy] API token:", token ? "set" : "MISSING");
 
 if (!existsSync(wranglerJsonc)) {
   console.error("[cf-deploy] FATAL: wrangler.jsonc not found in repo root.");
@@ -38,11 +42,12 @@ if (!existsSync(wranglerBin)) {
   process.exit(1);
 }
 
-if (!process.env.CLOUDFLARE_API_TOKEN) {
+if (!token) {
   console.error(
     "[cf-deploy] FATAL: CLOUDFLARE_API_TOKEN is not set.\n" +
-      "  Cloudflare dashboard → Workers project → Settings → Variables and secrets → add CLOUDFLARE_API_TOKEN.\n" +
-      "  Create token: https://dash.cloudflare.com/profile/api-tokens (Workers Scripts: Edit template).",
+      "  GitHub: repo Settings → Secrets → CLOUDFLARE_API_TOKEN\n" +
+      "  Cloudflare Workers Builds: project → Settings → Variables → CLOUDFLARE_API_TOKEN\n" +
+      "  Create token: https://dash.cloudflare.com/profile/api-tokens (Edit Cloudflare Workers template).",
   );
   process.exit(1);
 }
@@ -53,9 +58,12 @@ try {
   // ignore
 }
 
+const accountId = process.env.CLOUDFLARE_ACCOUNT_ID ?? "";
+const accountFlag = accountId ? ` --account-id "${accountId}"` : "";
+
 const cmd =
   process.platform === "win32"
-    ? `"${wranglerBin}" deploy --config wrangler.jsonc`
-    : `"${wranglerBin}" deploy --config wrangler.jsonc`;
+    ? `"${wranglerBin}" deploy --config wrangler.jsonc${accountFlag}`
+    : `"${wranglerBin}" deploy --config wrangler.jsonc${accountFlag}`;
 
 execSync(cmd, { stdio: "inherit", shell: process.platform === "win32" });

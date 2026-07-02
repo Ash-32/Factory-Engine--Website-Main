@@ -32,3 +32,15 @@ If Pages is not already enabled:
 3. Push to `main` (or run **Deploy GitHub Pages** manually)
 
 No secrets or environment variables are required.
+
+## Cloudflare Pages
+
+Use **npm** (not Bun). The repo ships `package-lock.json` only — do not add `bun.lock` or Cloudflare will run `bun install --frozen-lockfile` and fail if it drifts from `package.json`.
+
+| Setting | Value |
+|---------|--------|
+| **Build command** | `npm run build` |
+| **Build output directory** | `dist/client` |
+| **Node.js version** | 22 |
+
+For a custom domain (e.g. factory-engine.com), leave `GITHUB_PAGES` unset so assets use base path `/`. Only set `GITHUB_PAGES=true` for GitHub Pages builds.
